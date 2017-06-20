@@ -72,36 +72,13 @@ end
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
 
-
-  # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
-
-  # require database cleaner at the top level
-
-
-
-
-
-
-
-# [...]
-# configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
-
-# [...]
-  # [...]
-  # add `FactoryGirl` methods
-
-  # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
- 
 end
 
-
-
-
-  Shoulda::Matchers.configure do | Config |
-  Config.integrate do | Com |
-    # Escolha uma estrutura de teste: 
-    with.test_framework :rspec 
-      with.library :rails 
-  end 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
+

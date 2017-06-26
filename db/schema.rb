@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620210431) do
+ActiveRecord::Schema.define(version: 20170620224309) do
+
+  create_table "coments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "space_id"
+    t.string   "coment"
+    t.integer  "points"
+    t.integer  "recommends"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_coments_on_space_id"
+    t.index ["user_id"], name: "index_coments_on_user_id"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "spaces", force: :cascade do |t|
+    t.integer  "manager_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["manager_id"], name: "index_spaces_on_manager_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
